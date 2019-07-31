@@ -27,10 +27,13 @@ function decrement() {
     $("#display").text("Time remaining: " + converted);
 
     if (timeout === 0) {
+        // Change the "display" p
+        $("#display").text("Time remaining: 00:00");
         // Use clearInterval to stop the count here and reset the clock
         clearInterval(interval);
         timeout = 60;
         clockRunning = false;
+        alert("Time's up!");
     }
 }
 
