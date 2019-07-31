@@ -27,8 +27,9 @@ function decrement() {
     $("#display").text("Time remaining: " + converted);
 
     if (timeout === 0) {
-        // Use clearInterval to stop the count here and set the clock to not be running
+        // Use clearInterval to stop the count here and reset the clock
         clearInterval(interval);
+        timeout = 60;
         clockRunning = false;
     }
 }
