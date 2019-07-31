@@ -3,10 +3,10 @@ body {
     background-color: #cccccc;
 }
 
-.container {
+main .container {
     background-color: yellow;
 }
 
-.container * {
+main .container * {
     text-align: center;
 }
