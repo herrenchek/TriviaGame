@@ -15,7 +15,7 @@ $(document).on("click", "#start", function () {
 // Global variables
 var interval = 0;
 var clockRunning = false;
-var timeout = 60;
+var timeout = 10;
 var score = 0;
 
 // Trivia questions
@@ -115,6 +115,8 @@ function reset() {
     // Show and hide buttons
     $("#start").show();
     $("#submit").hide();
+    // Clear "quiz" div
+    $("#quiz").empty();
 }
 
 function timeConverter(t) {
@@ -129,10 +131,3 @@ function timeConverter(t) {
     }
     return minutes + ":" + seconds;
 }
-
-// for (var i = 0; i < questions.length; i++) {
-//     var response = questions.answer;
-//     if (response === trivia[i].answer) {
-//         score++;
-//     }
-// }
