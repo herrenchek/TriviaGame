@@ -109,14 +109,10 @@ function reset() {
     $("#display").text("Time remaining: 00:00");
     // Use clearInterval to stop the count here and reset the clock
     clearInterval(interval);
-    timeout = 60;
     clockRunning = false;
-    alert("Time's up! You scored " + score + "/" + trivia.length + ".");
-    // Show and hide buttons
-    $("#start").show();
-    $("#submit").hide();
-    // Clear "quiz" div
-    $("#quiz").empty();
+    timeout = 60;
+    score = 0;
+    results();
 }
 
 function timeConverter(t) {
@@ -130,4 +126,23 @@ function timeConverter(t) {
         minutes = "00";
     }
     return minutes + ":" + seconds;
+}
+
+function guesses() {
+    var guesses = document.querySelectorAll("input[type=radio]:checked");
+    for (var i = 0; i < guesses.length; i++) {
+        if ($(guesses[i]).val() === trivia[i].answer) {
+            score++;
+        }
+    }
+}
+
+function results() {
+    guesses();
+    alert("Time's up! You scored " + score + "/" + trivia.length + ".");
+    // Show and hide buttons
+    $("#start").show();
+    $("#submit").hide();
+    // Clear "quiz" div
+    $("#quiz").empty();
 }
