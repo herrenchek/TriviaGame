@@ -15,7 +15,7 @@ $(document).on("click", "#start", function () {
 // Global variables
 var interval = 0;
 var clockRunning = false;
-var timeout = 10;
+var timeout = 60;
 var score = 0;
 
 // Trivia questions
@@ -130,6 +130,7 @@ function timeConverter(t) {
 
 function guesses() {
     var guesses = document.querySelectorAll("input[type=radio]:checked");
+    console.log(guesses);
     for (var i = 0; i < guesses.length; i++) {
         if ($(guesses[i]).val() === trivia[i].answer) {
             score++;
