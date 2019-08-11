@@ -142,7 +142,7 @@ function results() {
     guesses();
     alert("Time's up! You scored " + score + "/" + trivia.length + ".");
     // Show and hide buttons
-    $("#start").show();
+    $("#start").text("Replay?").show();
     $("#submit").hide();
     // Clear "quiz" div
     $("#quiz").empty();
