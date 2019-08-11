@@ -1,12 +1,18 @@
 window.onload = function () {
     // Click handler for Start button
-    $("#start").on("click", start);
+    $("#start").click(function (e) {
+        e.preventDefault();
+        start();
+        // Hide button
+        $("#start").hide();
+    });
 };
 
 // Global variables
 var interval = 0;
 var clockRunning = false;
 var timeout = 60;
+var score = 0;
 
 function start() {
     // Use setInterval to start the count here and set the clock to running
@@ -33,7 +39,9 @@ function decrement() {
         clearInterval(interval);
         timeout = 60;
         clockRunning = false;
-        alert("Time's up!");
+        alert("Time's up! You scored " + score + "/" + questions.length + ".");
+        // Show button
+        $("#start").show();
     }
 }
 
@@ -48,4 +56,22 @@ function timeConverter(t) {
         minutes = "00";
     }
     return minutes + ":" + seconds;
+}
+
+var questions = [
+    {
+        prompt: "What color are apples?\n(a) Red",
+        answer: "a"
+    },
+    {
+        prompt: "What color are apples?\n(a) Red",
+        answer: "a"
+    }
+]
+
+for (var i = 0; i < questions.length; i++) {
+    var response = questions.answer;
+    if (response === questions[i].answer) {
+        score++;
+    }
 }
