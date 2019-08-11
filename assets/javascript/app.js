@@ -1,17 +1,16 @@
 window.onload = function () {
     $("#submit").hide();
-    // Click handler for Start button
-    $("#start").click(function (e) {
-        e.preventDefault();
-        start();
-        // Hide Start button
-        $("#start").hide();
-        // Show Submit button
-        $("#submit").show();
-    });
+    $("#quiz").hide();
     // Click handler for submit button
     $("#submit").on("click", reset);
 };
+
+$(document).on("click", "#start", function() {
+    start();
+    // Show Submit button and "quiz" form
+    $("#submit").show();
+    $("#quiz").show();
+  });
 
 // Global variables
 var interval = 0;
@@ -20,6 +19,7 @@ var timeout = 60;
 var score = 0;
 
 function start() {
+    $("#start").hide();
     // Use setInterval to start the count here and set the clock to running
     if (!clockRunning) {
         // Change the "display" p
