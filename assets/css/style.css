@@ -10,3 +10,7 @@ body {
 .container * {
     text-align: center;
 }
+
+p {
+    font-weight: bold;
+}
