@@ -1,11 +1,16 @@
 window.onload = function () {
+    $("#submit").hide();
     // Click handler for Start button
     $("#start").click(function (e) {
         e.preventDefault();
         start();
-        // Hide button
+        // Hide Start button
         $("#start").hide();
+        // Show Submit button
+        $("#submit").show();
     });
+    // Click handler for submit button
+    $("#submit").on("click", reset);
 };
 
 // Global variables
@@ -29,20 +34,25 @@ function decrement() {
     timeout--;
     // Get current time, pass that into the timeConverter function, and save the result in a variable
     var converted = timeConverter(timeout);
-    // Use the variable we just created to show the converted time in the "display" div.
+    // Show the converted time in the "display" div
     $("#display").text("Time remaining: " + converted);
 
     if (timeout === 0) {
-        // Change the "display" p
-        $("#display").text("Time remaining: 00:00");
-        // Use clearInterval to stop the count here and reset the clock
-        clearInterval(interval);
-        timeout = 60;
-        clockRunning = false;
-        alert("Time's up! You scored " + score + "/" + questions.length + ".");
-        // Show button
-        $("#start").show();
+        reset();
     }
+}
+
+function reset() {
+    // Change the "display" p
+    $("#display").text("Time remaining: 00:00");
+    // Use clearInterval to stop the count here and reset the clock
+    clearInterval(interval);
+    timeout = 60;
+    clockRunning = false;
+    alert("Time's up! You scored " + score + "/" + questions.length + ".");
+    // Show and hide buttons
+    $("#start").show();
+    $("#submit").hide();
 }
 
 function timeConverter(t) {
