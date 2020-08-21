@@ -19,7 +19,7 @@ var timeout = 60;
 var score = 0;
 
 // Trivia questions
-var trivia = [
+const trivia = [
     {
         question: "Shelob is a character introduced in 'The Two Towers' and is which of the following types of creatures?",
         options: ["Elf", "Giant spider", "Orc", "Ent"],
@@ -82,10 +82,10 @@ function start() {
         clockRunning = true;
     }
     // Appends trivia questions to "trivia" div
-    for (var i = 0; i < trivia.length; i++) {
+    for (let i = 0; i < trivia.length; i++) {
         $("#quiz").append("<p>" + trivia[i].question + "</p>");
-        for (var j = 0; j < trivia[i].options.length; j++) {
-            $("#quiz").append("<div class='form-check form-check-inline mb-3'> <input class='form-check-input' type='radio' name='Question-" + (i + 1) +
+        for (let j = 0; j < trivia[i].options.length; j++) {
+            $("#quiz").append("<div class='form-check form-check-inline mb-3'> <input class='form-check-input' type='radio' name='" + (i + 1) +
                 "' value='" + trivia[i].options[j] + "'>" + "<label class='form-check-label'>" + trivia[i].options[j]);
         }
     }
@@ -129,10 +129,14 @@ function timeConverter(t) {
 }
 
 function guesses() {
-    var guesses = document.querySelectorAll("input[type=radio]:checked");
-    console.log(guesses);
-    for (var i = 0; i < guesses.length; i++) {
-        if ($(guesses[i]).val() === trivia[i].answer) {
+    const guesses = document.querySelectorAll("input[type=radio]:checked");
+    
+    for (let i = 0; i < guesses.length; i++) {
+        // The name of the radio button (i.e. the question number)
+        var question = guesses[i].name;
+        
+        // Check if text of selected node is equal to the answer of the corresponding trivia question object
+        if ($(guesses[i]).val() === trivia[question - 1].answer) {
             score++;
         }
     }
